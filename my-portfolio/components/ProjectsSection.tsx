@@ -1,73 +1,19 @@
-import {
-  SiJavascript, SiNodedotjs, SiMongodb, SiExpress, SiHtml5, SiCss3, SiMysql,
-  SiGit, SiGo, SiJson, SiElasticsearch, SiPostman
-} from "react-icons/si";
-import { FaDatabase, FaTerminal } from "react-icons/fa";
-import { MdOutlineApi } from "react-icons/md";
-
-interface Contributor {
-  name: string;
-  url: string;
-}
-
 interface Project {
   name: string;
   description: string;
   details?: string;
   tech: string[];
-  contributors?: Contributor[];
+  contributors?: { name: string; url: string }[];
   repo?: string;
   liveDemo?: string;
   startDate: string;
   endDate: string;
 }
 
-const projects: Project[] = [
-  {
-    name: "Swamikrupa Traders - Premium Turmeric Products",
-    description: "Responsive web application for premium turmeric exports.",
-    details:
-      "Contemporary React frontend, advanced forms with country validation, custom full-page scroll, WhatsApp/email auto-message, and mobile-first UX.",
-    tech: [
-      "HTML5",
-      "CSS3",
-      "Tailwind CSS",
-      "JavaScript (Advanced)",
-      "React.js"
-    ],
-    repo: "https://github.com/vivekkadoli/Final",
-    contributors: [
-      { name: "Shubham Powar", url: "https://www.linkedin.com/in/spowartech/" }
-    ],
-    startDate: "May 2025",
-    endDate: "June 2025",
-    liveDemo: "#",
-  },
-  {
-    name: "AI Image Generator",
-    description:
-      "Web app turning prompts into AI images. Fast, responsive, and powered by Hugging Face API.",
-    details:
-      "Pick model, aspect, count; use light/dark mode; download images instantly.",
-    tech: [
-      "HTML5",
-      "CSS3",
-      "JavaScript (Vanilla)",
-      "HuggingFace API"
-    ],
-    repo: "https://github.com/vivekkadoli/AI_Image_Generator",
-    liveDemo: "#",
-    startDate: "April 2025",
-    endDate: "April 2025"
-  }
-];
-
-export default function Projects() {
+export default function ProjectsSection({ projects }: { projects: Project[] }) {
   return (
-    <section className="max-w-6xl mx-auto py-12 px-4">
-      <h2 className="text-4xl font-bold mb-10 text-[#a47aff] text-center tracking-wide drop-shadow">
-        Projects
-      </h2>
+    <section id="projects" className="mt-20 mb-10 max-w-6xl mx-auto scroll-mt-32">
+      <h2 className="text-4xl font-bold mb-10 text-[#a47aff] text-center tracking-wide drop-shadow">Projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {projects.map((proj) => (
           <div
@@ -91,10 +37,10 @@ export default function Projects() {
                 </span>
               ))}
             </div>
-            {(proj.contributors ?? []).length > 0 && (
+            {proj.contributors?.length ? (
               <div className="mb-1">
                 <span className="font-semibold text-[#ff5edd] text-xs">Contributors:</span>
-                {(proj.contributors ?? []).map((c, idx, arr) => (
+                {proj.contributors.map((c, idx) => (
                   <a
                     key={c.name}
                     href={c.url}
@@ -103,11 +49,11 @@ export default function Projects() {
                     rel="noopener noreferrer"
                   >
                     {c.name}
-                    {idx < arr.length - 1 ? "," : ""}
+                    {idx < (proj.contributors?.length ?? 0) - 1 ? "," : ""}
                   </a>
                 ))}
               </div>
-            )}
+            ) : null}
             <div className="mb-2 text-xs text-[#8e71ce]">
               <span>
                 {proj.startDate} - {proj.endDate}
