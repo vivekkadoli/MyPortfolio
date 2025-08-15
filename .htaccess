@@ -1,0 +1,9 @@
+# Cache CSS for 1 hour only
+<FilesMatch "\.(css)$">
+    Header set Cache-Control "max-age=3600, public"
+</FilesMatch>
+
+# Force revalidation for HTML
+<FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+</FilesMatch>
