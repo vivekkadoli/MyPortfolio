@@ -1,7 +1,7 @@
 // Hamburger mobile nav toggle
 const hamburger = document.getElementById('hamburger');
 const menu = document.getElementById('menu');
-if(hamburger && menu) {
+if (hamburger && menu) {
   hamburger.onclick = function() {
     menu.classList.toggle('show');
   };
@@ -40,52 +40,98 @@ document.head.appendChild(style);
 // Section animation on scroll
 document.addEventListener("DOMContentLoaded", () => {
   function revealSections() {
-    document.querySelectorAll('.fade-in').forEach(sec => {
-      const pos = sec.getBoundingClientRect().top;
-      const win = window.innerHeight;
-      if (pos < win - 90) sec.classList.add('visible');
-    });
-  }
-  revealSections(); 
-  window.addEventListener("scroll", revealSections);
-
-document.querySelectorAll('.skill-card').forEach(function(row) {
-  const pct = row.getAttribute('data-pct') || 0;
-  row.style.setProperty('--pct', pct);
-  const bar = row.querySelector('.skill-bar');
-  if(bar) bar.style.width = "0";
-  function showBar() { if(bar) { void bar.offsetWidth; bar.style.width = pct + '%'; } }
-  function hideBar() { if(bar) bar.style.width = "0"; }
-  row.addEventListener('mouseenter', showBar);
-  row.addEventListener('mouseleave', hideBar);
-  row.addEventListener('focusin', showBar);
-  row.addEventListener('focusout', hideBar);
-  row.addEventListener('touchstart', showBar, {passive:true});
-  row.addEventListener('touchend', hideBar, {passive:true});
-});
-});
-// New code for "My Journey" tabs
-  const journeyTabsContainer = document.querySelector('.journey-tabs');
-  const journeyTabs = document.querySelectorAll('.journey-tab-item');
-  const journeyPanels = document.querySelectorAll('.journey-panel');
-
-  if (journeyTabsContainer) {
-    journeyTabsContainer.addEventListener('click', (e) => {
-      const clickedTab = e.target.closest('.journey-tab-item');
-      if (!clickedTab) return;
-
-      // Deactivate all tabs and panels
-      journeyTabs.forEach(tab => tab.classList.remove('active'));
-      journeyPanels.forEach(panel => panel.classList.remove('active'));
-
-      // Activate the clicked tab
-      clickedTab.classList.add('active');
-
-      // Activate the corresponding content panel
-      const targetId = clickedTab.dataset.target;
-      const targetPanel = document.getElementById(targetId);
-      if (targetPanel) {
-        targetPanel.classList.add('active');
+    document.querySelectorAll('.fade-in').forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      if (sectionTop < windowHeight * 0.75) {
+        section.classList.add('visible');
       }
     });
   }
+
+  window.addEventListener('scroll', revealSections);
+  revealSections();
+});
+
+// Skills bar animation on scroll
+document.addEventListener("DOMContentLoaded", () => {
+  const skillRows = document.querySelectorAll('.skill-row');
+  const skillsSection = document.getElementById('skills');
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5 // Trigger when 50% of the element is visible
+  };
+
+  const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        skillRows.forEach(row => {
+          const pct = row.dataset.percentage;
+          const bar = row.querySelector('.skill-bar');
+          if (bar) {
+            bar.style.width = pct + '%';
+          }
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+
+  if (skillsSection) {
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    observer.observe(skillsSection);
+  }
+
+  skillRows.forEach(row => {
+    const pct = row.dataset.percentage;
+    const bar = row.querySelector('.skill-bar');
+    if (bar) bar.style.width = "0";
+
+    function showBar() {
+      if (bar) {
+        void bar.offsetWidth;
+        bar.style.width = pct + '%';
+      }
+    }
+
+    function hideBar() {
+      if (bar) bar.style.width = "0";
+    }
+
+    row.addEventListener('mouseenter', showBar);
+    row.addEventListener('mouseleave', hideBar);
+    row.addEventListener('focusin', showBar);
+    row.addEventListener('focusout', hideBar);
+    row.addEventListener('touchstart', showBar, {
+      passive: true
+    });
+    row.addEventListener('touchend', hideBar, {
+      passive: true
+    });
+  });
+});
+
+// New code for "My Journey" tabs
+const journeyTabsContainer = document.querySelector('.journey-tabs');
+const journeyTabs = document.querySelectorAll('.journey-tab-item');
+const journeyPanels = document.querySelectorAll('.journey-panel');
+
+if (journeyTabsContainer) {
+  journeyTabsContainer.addEventListener('click', (e) => {
+    const clickedTab = e.target.closest('.journey-tab-item');
+    if (!clickedTab) return;
+
+    // Deactivate all tabs and panels
+    journeyTabs.forEach(tab => tab.classList.remove('active'));
+    journeyPanels.forEach(panel => panel.classList.remove('active'));
+
+    // Activate the clicked tab
+    clickedTab.classList.add('active');
+
+    // Activate the corresponding content panel
+    const targetId = clickedTab.dataset.target;
+    document.getElementById(targetId).classList.add('active');
+  });
+}

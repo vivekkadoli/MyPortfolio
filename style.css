@@ -11,6 +11,10 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Navigation */
 header {
   position: fixed;
@@ -653,8 +657,8 @@ nav {
 .section {
   padding: 80px 0;
   max-width: 1600px;
-  /* Increased max-width */
   margin: auto;
+  
 }
 
 .section h2 {
@@ -717,6 +721,10 @@ nav {
 }
 
 /* ==== MY JOURNEY SECTION - TABBED INTERFACE ==== */
+#journey {
+  scroll-margin-top: 40px;
+}
+
 .journey-container {
   display: flex;
   gap: 2rem;
@@ -1135,6 +1143,10 @@ nav {
 }
 
 /* ===== UPDATED CONTACT SECTION STYLES ===== */
+#contact {
+  scroll-margin-top: 40px;
+}
+
 .card.contact {
   display: flex;
   flex-direction: column;
@@ -1319,6 +1331,10 @@ footer {
 }
 
 /*Skills section*/
+#skills {
+  scroll-margin-top: 80px;
+}
+
 #skills h2 {
   margin-bottom: 0.5rem;
   border-left: none;
@@ -2032,6 +2048,7 @@ footer {
 
 #projects {
   max-width: none;
+  scroll-margin-top: 150px; 
   padding: 0;
 }
 
