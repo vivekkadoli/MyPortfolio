@@ -135,3 +135,6 @@ if (journeyTabsContainer) {
     document.getElementById(targetId).classList.add('active');
   });
 }
+window.addEventListener('DOMContentLoaded', function() {
+  document.body.classList.add('loaded');
+});
