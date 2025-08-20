@@ -138,3 +138,23 @@ if (journeyTabsContainer) {
 window.addEventListener('DOMContentLoaded', function() {
   document.body.classList.add('loaded');
 });
+
+// Close mobile menu on link click and smooth-scroll with header offset
+document.addEventListener('DOMContentLoaded', () => {
+  const headerOffset = 80; // fixed header height
+  const links = document.querySelectorAll('#menu a[href^="#"]');
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const hash = link.getAttribute('href');
+      const target = document.querySelector(hash);
+      if (target) {
+        e.preventDefault();
+        // close menu if open (mobile)
+        menu.classList.remove('show');
+        const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        history.pushState(null, '', hash);
+      }
+    });
+  });
+});
