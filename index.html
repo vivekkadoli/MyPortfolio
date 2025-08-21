@@ -191,39 +191,48 @@
   <section class="section fade-in" id="projects">
     <h2>Projects</h2>
     <div class="projects-grid">
-      <!-- Project Card 0: Shubham Powar Portfolio Website -->
+      <!-- Project Card 0: MERN Stack -->
       <div class="proj-card">
         <div class="proj-header">
-          <h3 class="proj-title">Shubham Powar Portfolio Website</h3>
+          <h3 class="proj-title">MERN Stack</h3>
         </div>
         <p class="proj-description">
-          A modern, responsive personal portfolio website designed and developed for Shubham Powar by Vivek Kadoli. The site showcases Shubham’s DevOps skills, projects, blog/notes, and contact form, with interactive UI elements, smooth animations, and a professional design.
+          A production‑style MERN application demonstrating a clean separation of client, server, and database layers. The project provides a scalable folder structure for building REST APIs with Express, a React UI for consuming those APIs, and MongoDB integration for persistence.
         </p>
         <div class="proj-features">
           <h4>Key Features</h4>
           <ul>
-            <li>Showcases DevOps skills, projects, blog/notes, and contact form.</li>
-            <li>Interactive UI elements and smooth animations.</li>
-            <li>Professional, accessible, and mobile-first design.</li>
-            <li>Integration with Font Awesome, Devicon, and Google Fonts.</li>
+            <li>Separated architecture: <code>FrontEnd</code>, <code>BackEnd</code>, <code>MongoDB</code>.</li>
+            <li>Express REST API structure with routes, controllers, and middleware.</li>
+            <li>MongoDB connection and environment-based configuration.</li>
+            <li>React client with API service layer and reusable components.</li>
+          </ul>
+        </div>
+        <div class="proj-features">
+          <h4>Workflow</h4>
+          <ul>
+            <li>React UI event triggers an action (form submit/button click).</li>
+            <li>Client service layer sends JSON requests to Express API.</li>
+            <li>Express routes forward to controllers with validation/middleware.</li>
+            <li>Controllers use models to read/write data in MongoDB.</li>
+            <li>API returns JSON; React updates state and re-renders UI.</li>
           </ul>
         </div>
         <div class="proj-technologies">
           <h4>Technologies & Skills</h4>
           <div class="tech-tags">
-            <span class="tech-tag">HTML5</span>
-            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">ReactJS</span>
+            <span class="tech-tag">NodeJS</span>
+            <span class="tech-tag">ExpressJS</span>
+            <span class="tech-tag">MongoDB</span>
             <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">UI/UX Design</span>
-            <span class="tech-tag">Accessibility</span>
-            <span class="tech-tag">Font Awesome</span>
-            <span class="tech-tag">Devicon</span>
-            <span class="tech-tag">Google Fonts</span>
-            <span class="tech-tag">Mobile-first</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">REST</span>
           </div>
         </div>
         <div class="proj-footer">
-          <a href="https://github.com/vivekkadoli/portfolio-shubham" class="proj-button" target="_blank">
+          <a href="https://github.com/vivekkadoli/MERN-Stack" class="proj-button" target="_blank">
             View Project <i class="fas fa-external-link-alt"></i>
           </a>
         </div>
@@ -249,6 +258,18 @@
             <li>Modern React frontend: product catalog, enquiry forms, country-based validation.</li>
             <li>Full-page scroll navigation, WhatsApp/email inquiry auto-formatting.</li>
             <li>Mobile-first, automated validation, seamless UX with Tailwind.</li>
+          </ul>
+        </div>
+
+        <div class="proj-features">
+          <h4>Workflow</h4>
+          <ul>
+            <li>User browses the catalog and selects a turmeric product.</li>
+            <li>Selected product context is carried into an enquiry form.</li>
+            <li>Country-specific validation ensures correct phone/email formats.</li>
+            <li>On submit, the client formats a message and opens WhatsApp/email with prefilled details.</li>
+            <li>Admin receives enquiry instantly and continues conversation via WhatsApp/email.</li>
+            <li>Full-page scroll and responsive layout keep navigation smooth across sections.</li>
           </ul>
         </div>
 
@@ -294,6 +315,18 @@
           <ul>
             <li>AI-powered app: user text → AI-generated images (via Hugging Face API).</li>
             <li>Model, aspect ratio, image selection, instant preview & download. Dark/light mode.</li>
+          </ul>
+        </div>
+
+        <div class="proj-features">
+          <h4>Workflow</h4>
+          <ul>
+            <li>User enters a text prompt and chooses a model and aspect ratio.</li>
+            <li>Client validates inputs and prepares the request payload.</li>
+            <li>Frontend sends the prompt and options to the Hugging Face Inference API.</li>
+            <li>API returns one or multiple generated images based on user selection.</li>
+            <li>Images render instantly in the gallery with preview capability.</li>
+            <li>User can download selected images; UI supports dark/light mode.</li>
           </ul>
         </div>
 
