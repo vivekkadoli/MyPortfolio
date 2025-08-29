@@ -2,9 +2,43 @@
 const hamburger = document.getElementById('hamburger');
 const menu = document.getElementById('menu');
 if (hamburger && menu) {
-  hamburger.onclick = function() {
-    menu.classList.toggle('show');
+  // ARIA for accessibility on mobile
+  hamburger.setAttribute('role', 'button');
+  hamburger.setAttribute('aria-controls', 'menu');
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-label', 'Open navigation menu');
+
+  const setHamburgerIcon = (open) => {
+    // Use literal characters for reliability across browsers
+    hamburger.textContent = open ? '✕' : '☰';
+    hamburger.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
   };
+
+  const openMenu = () => {
+    menu.classList.add('show');
+    hamburger.setAttribute('aria-expanded', 'true');
+    setHamburgerIcon(true);
+  };
+  const closeMenu = () => {
+    menu.classList.remove('show');
+    hamburger.setAttribute('aria-expanded', 'false');
+    setHamburgerIcon(false);
+  };
+  const toggleMenu = () => {
+    if (menu.classList.contains('show')) closeMenu();
+    else openMenu();
+  };
+
+  // initialize icon
+  setHamburgerIcon(false);
+
+  hamburger.addEventListener('click', toggleMenu, { passive: true });
+  // Keep menu open on background taps; only Esc closes it
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('show')) {
+      closeMenu();
+    }
+  });
 }
 
 // Dynamic navbar background on scroll
@@ -79,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  if (skillsSection) {
+  if (skillsSection && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     observer.observe(skillsSection);
   }
@@ -149,8 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(hash);
       if (target) {
         e.preventDefault();
-        // close menu if open (mobile)
-        menu.classList.remove('show');
+        // keep menu open per requirements unless link is the toggle (handled separately)
         const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
         window.scrollTo({ top: y, behavior: 'smooth' });
         history.pushState(null, '', hash);
