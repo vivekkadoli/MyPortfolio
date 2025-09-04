@@ -2024,3 +2024,19 @@ body.loaded .section.fade-in:nth-of-type(4) {
 .hero-description p {
   margin-bottom: 0.8rem;
 }
+/* Mobile view fixes */
+@media (max-width: 768px) {
+  .hero .hero-name {
+    font-size: 2.5rem !important;
+  }
+  .hero .hero-title {
+    font-size: 1.2rem !important;
+  }
+  .hero-description p {
+    font-size: 1rem;
+  }
+  nav #menu {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
