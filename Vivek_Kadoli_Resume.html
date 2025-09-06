@@ -17,6 +17,10 @@
             min-height: 297mm;
             margin: auto;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            page-break-after: always;
+        }
+        .a4-container:last-child {
+            page-break-after: auto;
         }
         @media screen and (max-width: 768px) {
             .a4-container {
@@ -38,6 +42,7 @@
     </style>
 </head>
 <body class="bg-gray-200 p-0 sm:p-8">
+    <!-- Page 1 -->
     <div class="a4-container bg-white flex main-flex-container">
         <aside class="sidebar bg-blue-800 text-white p-8" style="width: 35%;">
             <section>
@@ -94,7 +99,7 @@
             <section>
                 <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-blue-700 pb-2 mb-4 uppercase">Profile</h3>
                 <p class="text-gray-700 leading-relaxed">
-                    A dynamic backend engineer with a strong foundation in scalable system development, RESTful API design, and automation. Recently enhanced technical expertise through freelance MERN stack projects and innovative AI-driven applications, including the integration of ReactJs, Typescript, Tailwind CSS, Hugging Face API, and Google Map APIs. Currently focused on applying artificial intelligence to create intelligent, efficient solutions for modern web platforms.
+                    A dynamic backend engineer with a strong foundation in scalable system development, RESTful API design, and automation. Recently enhanced technical expertise through freelance MERN stack projects and innovative AI-driven applications. Experienced with production monitoring, MongoDB production access, and automation using Shell scripts.
                 </p>
             </section>
 
@@ -125,6 +130,14 @@
                         <li>Worked with production codebases and maintained direct access to MongoDB production environments.</li>
                     </ul>
                 </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="a4-container bg-white flex main-flex-container">
+        <main class="main-content p-8 text-gray-800" style="width: 100%;">
+            <section>
                 <div class="mt-6">
                     <div class="flex justify-between items-baseline">
                         <h4 class="text-lg font-semibold text-gray-900">Freelance & Independent Work</h4>
@@ -156,8 +169,8 @@
                  <div class="mb-6">
                     <h4 class="text-lg font-semibold text-gray-900">Swamikrupa Traders (MERN Stack Business Platform)</h4>
                     <ul class="mt-2 ml-4 space-y-1 text-gray-700 list-disc list-outside">
-                        <li>Created a responsive, production-style MERN application for a premium turmeric trading business (React, Node.js, Express, MongoDB).</li>
-                        <li>Implemented a product catalog, automated enquiry forms (including country-specific validation), and seamless WhatsApp/email outreach integration.</li>
+                        <li>Created a responsive, production-style MERN application for a premium turmeric trading business.</li>
+                        <li>Implemented product catalog, automated enquiry forms with country-specific validation, and WhatsApp/email outreach integration.</li>
                         <li>Delivered a mobile-first design with intuitive navigation and clear business information presentation.</li>
                     </ul>
                 </div>
